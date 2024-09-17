@@ -3,8 +3,9 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
+    {/* createBrowserRouter()  и здесь указать basename:"variant-v1" */}
     <App />
-  </StrictMode>,
-)
+  </StrictMode>
+);
