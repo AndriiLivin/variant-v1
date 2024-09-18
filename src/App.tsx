@@ -17,7 +17,7 @@ function App() {
       <h1>Vite + React</h1>
 
       <p className="read-the-docs" style={{ fontSize: "3rem" }}>
-        Привет Вашему семейству.
+        Привет ВСЕМУ Вашему семейству.
       </p>
     </>
   );
