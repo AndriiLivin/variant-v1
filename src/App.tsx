@@ -1,25 +1,40 @@
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import {
+  createContext,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
+import Dictaphone from "./components/Dictophone.d";
+import AvailableVoices from "./components/AvailableVoices";
+import SpeechPlayer from "./components/SpeechPlayer";
+
+type TVoiceContext = [
+  SpeechSynthesisVoice | null,
+  Dispatch<SetStateAction<SpeechSynthesisVoice>> | null
+];
+export const VoiceContext = createContext<TVoiceContext>([null, null]);
 
 function App() {
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+  const [voiceover, setVoiceover] = useState<SpeechSynthesisVoice>({
+    default: false,
+    lang: "ru-Ru",
+    localService: false,
+    name: "Google русский",
+    voiceURI: "Google русский",
+  });
 
-      <p className="read-the-docs" style={{ fontSize: "3rem" }}>
-        Привет ВСЕМУ Вашему семейству.
+  return (
+    <VoiceContext.Provider value={[voiceover, setVoiceover]}>
+      <p className="read-the-docs" style={{ fontSize: "1rem" }}>
+        Привет ВСЕМУ Вашему семейству !.
       </p>
-    </>
+      <Dictaphone />
+      <AvailableVoices />
+
+      <SpeechPlayer />
+    </VoiceContext.Provider>
   );
 }
 
